@@ -1,12 +1,13 @@
+import { Link } from "@inertiajs/react"
 import Layouts from "../Layouts/Layouts"
 
 export default function Home({posts}){
-  console.log(posts);
   return (
     <>
-      <h1 className="title">Hello {name}</h1>
+      <h1 className="title">Hello </h1>
+      
       <div>
-        {posts.map(post => (
+        {posts.data.map(post => (
             <div key={post.id} className="p-4 border-b">
               <div>
                 <span>Posted on :</span>
@@ -16,9 +17,31 @@ export default function Home({posts}){
             </div>
         ))}
       </div>
+
+      <div className="mt-6 flex justify-center">
+        {
+          posts.links.map(link => link.url ? 
+            (
+              <Link key={link.label} 
+                    href={link.url}
+                    dangerouslySetInnerHTML={{__html:link.label}}
+                    className={`p-1 mx-1 ${link.active ? "text-blue-500" : ""}`}
+              />
+            )
+            : 
+            (
+              <span key={link.label}
+                    dangerouslySetInnerHTML={{__html:link.label}}
+                    className={`p-1 mx-1 text-slate-300`}>
+
+              </span>
+            )
+          )
+        }
+      </div>
       <a href="/" className="block title ">{new Date().toLocaleTimeString()}</a>
     </>
   )
 }
 
-Home.layout=page => <Layouts children={page} title="welcome" />
+Home.layout=page => <Layouts children={page} title="Home" />
