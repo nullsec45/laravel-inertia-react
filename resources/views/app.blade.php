@@ -6,7 +6,6 @@
     @viteReactRefresh
     @vite('resources/js/app.jsx')
     @inertiaHead
-    <title>Laravel inertia</title>
 </head>
 <body>
     @inertia
