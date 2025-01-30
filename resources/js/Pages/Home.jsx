@@ -1,20 +1,28 @@
-import { Link, usePage } from "@inertiajs/react"
+import { Link, usePage, Head } from "@inertiajs/react"
 import Layouts from "../Layouts/Layouts"
 import { useState } from "react";
 
 export default function Home({posts}){
   const {flash}=usePage().props;
+  const {component}=usePage();
 
   const [flashMsg,setFlashMsg]=useState(flash.message);
+  const [flashSuccess,setFlashSuccess]=useState(flash.success);
+
 
   setTimeout(() => {
-    setFlashMsg(null);
+    setFlashSuccess(null);
   }, 2000);
   return (
     <>
+      <Head title={component} />
       <h1 className="title">Hello </h1>
       {flashMsg && (
         <div className="absolute top-24 right-6 bg-rose-500 p-2 rounded-md shadow-lg text-sm text-white">{flashMsg}</div>
+      )}
+
+       {flashSuccess && (
+        <div className="absolute top-24 right-6 bg-green-500 p-2 rounded-md shadow-lg text-sm text-white">{flashSuccess}</div>
       )}
       
       <div>
@@ -55,4 +63,4 @@ export default function Home({posts}){
   )
 }
 
-Home.layout=page => <Layouts children={page} title="Home" />
+Home.layout=page => <Layouts children={page} title='Home'/>
