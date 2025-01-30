@@ -1,6 +1,6 @@
 import React from 'react'
 import Layouts from "../Layouts/Layouts"
-import { useForm } from '@inertiajs/react'
+import { useForm, Head } from '@inertiajs/react'
 
 
 export default function Create()  {
@@ -13,6 +13,7 @@ export default function Create()  {
 
   return (
     <>
+      <Head title='Create Post' />      
       <h1 className='title'>Create a new post</h1>
 
       <div className='w-1/2 mx-auto'>
